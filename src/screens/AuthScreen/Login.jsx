@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image } from 'react-native'
 import React from 'react'
-import { COLORS, SIZES, FONTS } from '../../constants'
+import { COLORS, SIZES, FONTS, images } from '../../constants'
 import Header from '../../components/Header/Header'
+import Input from '../../components/Input/Input'
+import Button from '../../components/Pressable/Button'
 
 const Login = () => {
     return (
@@ -10,6 +12,20 @@ const Login = () => {
                 <Header />
                 <Text style={{ ...FONTS.body2, fontFamily: "Lato-Black", marginRight: SIZES.h1 * 9.55, color: COLORS.black }}> Log in</Text>
             </View>
+            <View style={{ marginTop: SIZES.h3 * 1.5 }}>
+                <Image source={images.little} style={{ height: SIZES.height * 0.3, width: SIZES.width, resizeMode: "contain", }} />
+                <Input
+                    Title="Name"
+                    placeholder={"Enter your name"} />
+                <Input
+                    Title="Password"
+                    placeholder={"Enter your Password"} />
+            </View>
+            <View style={{ marginTop: SIZES.h3 * 1.95 }}>
+                <Button title={"Login"} />
+            </View>
+
+
 
         </SafeAreaView>
     )

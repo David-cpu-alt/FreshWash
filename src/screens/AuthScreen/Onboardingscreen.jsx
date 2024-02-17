@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Touchable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { COLORS, SIZES, images, FONTS } from '../../constants'
@@ -30,6 +30,7 @@ const slides = [
 ]
 
 const Onboardingscreen = () => {
+  const navigation = useNavigation();
   const _renderItem = ({ item }) => {
     return (
       <View style={{}}>
@@ -64,9 +65,12 @@ const Onboardingscreen = () => {
 
   const _renderSkipButton = () => {
     return (
-      <View style={{ marginTop: SIZES.h5 * 0.98 }} >
-        <Text style={{ ...FONTS.body3, fontFamily: "Lato-Bold" }}>Skip</Text>
-      </View>
+      <TouchableOpacity onPress={() => navigation.navigate("create")}>
+        <View style={{ marginTop: SIZES.h5 * 0.98 }} >
+          <Text style={{ ...FONTS.body3, fontFamily: "Lato-Bold" }}>Skip</Text>
+        </View>
+      </TouchableOpacity>
+
     );
   };
 
@@ -74,7 +78,7 @@ const Onboardingscreen = () => {
     // Handle onDone or onSkip actions
     navigation.navigate("create")
   };
-  const navigation = useNavigation();
+
   return (
     <View style={{ flex: 1, backgroundColor: 'white', padding: SIZES.h6 }}>
       <AppIntroSlider

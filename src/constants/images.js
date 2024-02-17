@@ -10,6 +10,9 @@ export const little = require("../../asset/images/little.png")
 export const handrawn = require("../../asset/images/handrawn.jpg")
 export const track = require("../../asset/images/track.png")
 
+// Log in
+export const bag = require("../../asset/images/bag.png")
+
 
 
 export default {
@@ -21,6 +24,8 @@ export default {
     handrawn,
     little,
     track,
-    pick
+    pick,
+    // login
+    bag,
 
 }
