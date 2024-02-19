@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, Platform } from 'react-native'
 import React from 'react'
 import { SIZES, FONTS } from '../../constants'
 
 const Input = ({ placeholder, Title }) => {
     return (
-        < SafeAreaView>
+        < SafeAreaView  >
             <View style={{ gap: SIZES.h5 }}>
                 <Text style={{ ...FONTS.body4, fontFamily: "Lato-Regular" }}>{Title}</Text>
                 <View style={styles.box}>
@@ -13,8 +13,6 @@ const Input = ({ placeholder, Title }) => {
                         style={{ marginLeft: SIZES.h5, ...FONTS.body5 }} />
                 </View>
             </View>
-
-
         </SafeAreaView>
     )
 }

@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, SafeAreaView, Image } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { COLORS, SIZES, FONTS, images } from '../../constants'
 import Header from '../../components/Header/Header'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Pressable/Button'
+import { useNavigation } from '@react-navigation/native'
 
 const Login = () => {
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ flexDirection: "row", alignItems: "center", marginTop: SIZES.h5, justifyContent: "space-between" }}>
@@ -21,9 +23,10 @@ const Login = () => {
                     Title="Password"
                     placeholder={"Enter your Password"} />
             </View>
-            <View style={{ marginTop: SIZES.h3 * 1.95 }}>
-                <Button title={"Login"} />
-            </View>
+            <TouchableOpacity style={{ marginTop: SIZES.h3 * 1.95 }}>
+                <Button title={"Sign in"}
+                    onPress={() => navigation.navigate("")} />
+            </TouchableOpacity>
 
 
 
