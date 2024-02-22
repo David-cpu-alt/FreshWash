@@ -1,33 +1,49 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Home from '../../screens/Home/Home'
-import Profile from '../../../Profile/Profile'
-import { useNavigation } from '@react-navigation/native'
-import { COLORS, SIZES } from '../../constants'
+import { Text, View, Image } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Home from "../../screens/Home/Home";
+import Profile from "../../screens/Profile/Profile";
+import { COLORS, icons, SIZES } from "../../constants";
+import Order from "../../screens/Order/Order";
+import Settings from "../../screens/Settings/Settings";
 
-const Bottomtab = () => {
-    const navigation = useNavigation();
-    const Tab = createBottomTabNavigator()
+const BottomTab = () => {
+    const Tab = createBottomTabNavigator();
+
     return (
-        <Tab.Navigator screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, size, colour }) => {
-                let iconname;
-                if (route.name = "Home") {
-                    iconname = focused ? icons.Home : icons.Home
-                } else if (route.name = "Profile") {
-                    colour = focused ? COLORS.blue : COLORS.black
-                    iconname = focused ? icons.Profile : icons.Profile
+        <Tab.Navigator
+            screenOptions={({ route }) => ({
+
+                tabBarIcon: ({ focused }) => {
+                    let iconName;
+                    if (route.name === "Home") {
+                        iconName = focused ? icons.home : icons.home
+                    } else if (route.name === "Profile") {
+                        iconName = focused ? icons.profile : icons.profile
+                    } else if (route.name === "order") {
+                        iconName = focused ? icons.user : icons.user
+                    } else if (route.name === "settings") {
+                        iconName = focused ? icons.settings : icons.settings
+                    }
+                    return <Image source={iconName} style={{ height: SIZES.h2, width: SIZES.h2 }} />
+                },
+                headerShown: false,
+                tabBarShowLabel: true,
+                tabBarLabelPosition: "beside-icon",
+                tabBarStyle: {
+                    backgroundColor: COLORS.white,
+                    height: SIZES.h1 * 1.5,
+                    marginBottom: SIZES.h3,
+                    padding: SIZES.h5 * 0.5
                 }
-                return <Image source={iconname} style={{ height: SIZES.h2, width: SIZES.h2 }} />
-            }
-        })} >
+
+            })}
+        >
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Order" component={Order} />
+            <Tab.Screen name="settings" component={Settings} />
         </Tab.Navigator>
     )
 }
 
-export default Bottomtab
-
-const styles = StyleSheet.create({})
+export default BottomTab

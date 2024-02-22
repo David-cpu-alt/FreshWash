@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Pressable/Button'
 import { useNavigation } from '@react-navigation/native'
+import Bottomtab from '../../navigator/TabStack/BottomTab'
 
 const Login = () => {
     const navigation = useNavigation();
@@ -23,9 +24,9 @@ const Login = () => {
                     Title="Password"
                     placeholder={"Enter your Password"} />
             </View>
-            <TouchableOpacity style={{ marginTop: SIZES.h3 * 1.95 }}>
+            <TouchableOpacity style={{ marginTop: SIZES.h3 * 1.95 }} onPress={() => navigation.navigate("bottomtab", { screen: "Home" })}>
                 <Button title={"Sign in"}
-                    onPress={() => navigation.navigate("")} />
+                    onPress={() => navigation.navigate("bottomtab", { screen: "Home" })} />
             </TouchableOpacity>
 
 
