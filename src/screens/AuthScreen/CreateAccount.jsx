@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../components/Header/Header';
@@ -14,16 +14,21 @@ const CreateAccount = () => {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   const navigation = useNavigation();
+  console.log("the name is", name)
+  console.log("the password is", password)
 
-  const storename = async () => {
-    try {
-      await AsyncStorage.setItem('myname', name);
-      console.log('Data stored successfully!');
-    } catch (e) {
-      console.error('Failed to store name:', e);
-    }
 
-  }
+
+  // const storename = async () => {
+  //   try {
+  //     await AsyncStorage.setItem('myname', name);
+  //     console.log('Data stored successfully!');
+  //   } catch (e) {
+  //     console.error('Failed to store name:', e);
+  //   }
+
+
+  // }
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
@@ -38,8 +43,11 @@ const CreateAccount = () => {
             onChangeText={setName} />
           <Input Title="Password" placeholder={"Enter your password"}
             value={password}
-            onChangeText={setPassword} />
-          <Input Title="E-mail" placeholder={"Enter your e-mail"} />
+            onChangeText={setPassword}
+            keyboardType=""
+          />
+          <Input Title="E-mail" placeholder={"Enter your e-mail"}
+            keyboardType="email-address" />
         </View>
         <TouchableOpacity style={{ marginTop: SIZES.h3 / 0.2, alignItems: "center" }} onPress={() => navigation.navigate("Verify")}>
           <Button title={"Submit"} onPress={() => navigation.navigate("Verify")} />
@@ -50,6 +58,7 @@ const CreateAccount = () => {
             <Text style={{ ...FONTS.body5, textDecorationLine: "underline", color: COLORS.blue }}> Sign in</Text>
           </TouchableOpacity>
         </View>
+
       </SafeAreaView>
     </KeyboardAvoidingView>
   );

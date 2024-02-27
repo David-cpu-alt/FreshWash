@@ -1,8 +1,8 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../../screens/Home/Home";
 import Profile from "../../screens/Profile/Profile";
-import { COLORS, icons, SIZES } from "../../constants";
+import { COLORS, icons, SIZES, FONTS } from "../../constants";
 import Order from "../../screens/Order/Order";
 import Settings from "../../screens/Settings/Settings";
 
@@ -19,9 +19,10 @@ const BottomTab = () => {
                         iconName = focused ? icons.home : icons.home
                     } else if (route.name === "Profile") {
                         iconName = focused ? icons.profile : icons.profile
-                    } else if (route.name === "order") {
+                    } else if (route.name === "Order") {
                         iconName = focused ? icons.user : icons.user
-                    } else if (route.name === "settings") {
+                    }
+                    else if (route.name === "settings") {
                         iconName = focused ? icons.settings : icons.settings
                     }
                     return <Image source={iconName} style={{ height: SIZES.h2, width: SIZES.h2 }} />
@@ -31,19 +32,27 @@ const BottomTab = () => {
                 tabBarLabelPosition: "beside-icon",
                 tabBarStyle: {
                     backgroundColor: COLORS.white,
-                    height: SIZES.h1 * 1.5,
-                    marginBottom: SIZES.h3,
-                    padding: SIZES.h5 * 0.5
-                }
+                    height: SIZES.h4 * 3.5,
+                    marginBottom: SIZES.h5,
+                    padding: SIZES.h5 * 0.3,
+                    width: SIZES.width,
+
+                },
+                tabBarActiveTintColor: "red",
+                tabBarInactiveTintColor: COLORS.blue2,
+                tabBarLabelStyle: { ...FONTS.body5, },
+
 
             })}
         >
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Profile" component={Profile} />
             <Tab.Screen name="Order" component={Order} />
+
             <Tab.Screen name="settings" component={Settings} />
         </Tab.Navigator>
     )
 }
 
 export default BottomTab
+const styles = StyleSheet.create({})
