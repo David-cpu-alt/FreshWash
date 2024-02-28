@@ -31,6 +31,8 @@ const slides = [
 
 const Onboardingscreen = () => {
   const navigation = useNavigation();
+
+
   const _renderItem = ({ item }) => {
     return (
       <View style={{}}>

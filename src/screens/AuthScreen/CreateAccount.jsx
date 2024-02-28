@@ -18,17 +18,23 @@ const CreateAccount = () => {
   console.log("the password is", password)
 
 
+  const handleCreateAccount = async () => {
+    try {
+      //saving the name to Async storage
 
-  // const storename = async () => {
-  //   try {
-  //     await AsyncStorage.setItem('myname', name);
-  //     console.log('Data stored successfully!');
-  //   } catch (e) {
-  //     console.error('Failed to store name:', e);
-  //   }
+      await AsyncStorage.setItem("myname", name);
 
+      // determining whether the user has created an account 
+      await AsyncStorage.setItem("hascreatedAccount", "true")
 
-  // }
+      //
+
+    }
+    catch (error) {
+      console.log("failed to create account ", error)
+    }
+  }
+
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
@@ -40,17 +46,22 @@ const CreateAccount = () => {
         <View style={{ marginTop: SIZES.h1 * 1.8 }}>
           <Input Title="Name" placeholder={"Enter your name"}
             value={name}
+
             onChangeText={setName} />
-          <Input Title="Password" placeholder={"Enter your password"}
+          <Input
+            Title="Password"
+            placeholder={"Enter your password"}
             value={password}
+            eyeoff={true}
             onChangeText={setPassword}
             keyboardType=""
+
           />
           <Input Title="E-mail" placeholder={"Enter your e-mail"}
             keyboardType="email-address" />
         </View>
-        <TouchableOpacity style={{ marginTop: SIZES.h3 / 0.2, alignItems: "center" }} onPress={() => navigation.navigate("Verify")}>
-          <Button title={"Submit"} onPress={() => navigation.navigate("Verify")} />
+        <TouchableOpacity style={{ marginTop: SIZES.h3 / 0.2, alignItems: "center" }} onPress={handleCreateAccount}>
+          <Button title={"Submit"} onPress={handleCreateAccount} />
         </TouchableOpacity>
         <View style={{ flexDirection: "row", justifyContent: "center", marginTop: SIZES.h5 }}>
           <Text style={{ ...FONTS.body5 }}> Already have an account ? </Text>

@@ -1,19 +1,31 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, Platform } from 'react-native'
-import React from 'react'
-import { SIZES, FONTS } from '../../constants'
+import { StyleSheet, Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, Platform, TouchableOpacity, Image } from 'react-native'
+import React, { useState } from 'react'
+import { SIZES, FONTS, icons } from '../../constants'
 
-const Input = ({ placeholder, Title, onChangeText, keyboardType, value }) => {
+const Input = ({ placeholder, Title, onChangeText, keyboardType, value, eyeoff }) => {
+    const [hide, sethide] = useState(false)
     return (
         < SafeAreaView  >
-            <View style={{ gap: SIZES.h5 }}>
+            <View style={{ paddingVertical: SIZES.h5 }}>
                 <Text style={{ ...FONTS.body4, fontFamily: "Lato-Regular" }}>{Title}</Text>
-                <TextInput
-                    placeholder={placeholder}
-                    value={value}
-                    onChangeText={onChangeText}
-                    keyboardType={keyboardType}
-                    style={styles.box}
-                />
+                <View style={styles.box}>
+                    <TextInput
+                        placeholder={placeholder}
+                        value={value}
+                        onChangeText={onChangeText}
+                        keyboardType={keyboardType}
+                        secureTextEntry={hide}
+                    />
+                    {
+                        eyeoff &&
+                        <TouchableOpacity onPress={() => sethide(!hide)}>
+                            <Image source={hide ? icons.view : icons.view2} style={{ height: SIZES.h2, width: SIZES.h2, }} />
+                        </TouchableOpacity>
+
+                    }
+                </View>
+
+
 
             </View>
         </SafeAreaView>
@@ -29,6 +41,10 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius: SIZES.base * 0.5,
         marginBottom: SIZES.h5,
-        paddingLeft: SIZES.h3
+        flexDirection: 'row',
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: SIZES.h5
+
     }
 })

@@ -3,14 +3,34 @@ import React, { useEffect } from 'react'
 import { SIZES, images, FONTS } from '../../constants'
 import { useNavigation } from '@react-navigation/native'
 import { COLORS, SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constants/theme'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Splashscreen = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigation.navigate("introslider")
+            checkAccountStatus();
         }, 2000)
+
+
         return () => clearTimeout(timer)
     }, [navigation])
+
+    const checkAccountStatus = async () => {
+        try {
+            const hasCreatedAccount = await AsyncStorage.getItem("hascreatedAccount");
+
+            console.log('ssssssssss', hasCreatedAccount)
+            // if the user already has an account 
+            if (hasCreatedAccount === "true") {
+                navigation.navigate("Login")
+            } else {
+                navigation.navigate("introslider")
+            }
+
+        } catch (error) {
+            console.log("failed to check account status", error)
+        }
+    };
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.page}>
