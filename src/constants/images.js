@@ -12,6 +12,8 @@ export const track = require("../../asset/images/track.png")
 
 // Log in
 export const bag = require("../../asset/images/bag.png")
+export const wavinghand = require("../../asset/images/wavinghand.png");
+export const nike = require("../../asset/images/nike.jpeg")
 
 
 
@@ -27,5 +29,7 @@ export default {
     pick,
     // login
     bag,
+    wavinghand,
+    nike
 
 }

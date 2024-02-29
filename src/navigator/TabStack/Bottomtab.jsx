@@ -13,7 +13,7 @@ const BottomTab = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
 
-                tabBarIcon: ({ focused }) => {
+                tabBarIcon: ({ focused, color }) => {
                     let iconName;
                     if (route.name === "Home") {
                         iconName = focused ? icons.home : icons.home
