@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, KeyboardAvoidingView, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../components/Header/Header';
@@ -28,7 +28,7 @@ const CreateAccount = () => {
       await AsyncStorage.setItem("hascreatedAccount", "true")
 
       //
-
+      navigation.navigate("Verify")
     }
     catch (error) {
       console.log("failed to create account ", error)
@@ -37,13 +37,15 @@ const CreateAccount = () => {
 
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container} isEnabled
+      >
         <View style={{ flexDirection: "row", alignItems: "center", marginTop: SIZES.h5, justifyContent: "space-between" }}>
           <Header />
           <Text style={{ ...FONTS.body2, fontFamily: "Lato-Black", marginRight: SIZES.h1 * 6.45 }}>Create Account</Text>
         </View>
-        <View style={{ marginTop: SIZES.h1 * 1.8 }}>
+        <View style={{ marginTop: SIZES.h5 }}>
           <Input Title="Name" placeholder={"Enter your name"}
             value={name}
 
@@ -60,18 +62,18 @@ const CreateAccount = () => {
           <Input Title="E-mail" placeholder={"Enter your e-mail"}
             keyboardType="email-address" />
         </View>
-        <TouchableOpacity style={{ marginTop: SIZES.h3 / 0.2, alignItems: "center" }} onPress={handleCreateAccount}>
+        <TouchableOpacity style={{ marginTop: SIZES.h5, alignItems: "center" }} onPress={handleCreateAccount}>
           <Button title={"Submit"} onPress={handleCreateAccount} />
         </TouchableOpacity>
         <View style={{ flexDirection: "row", justifyContent: "center", marginTop: SIZES.h5 }}>
-          <Text style={{ ...FONTS.body5 }}> Already have an account ? </Text>
+          <Text style={{ ...FONTS.body5, }}> Already have an account ? </Text>
           <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-            <Text style={{ ...FONTS.body5, textDecorationLine: "underline", color: COLORS.blue }}> Sign in</Text>
+            <Text style={{ ...FONTS.body5, textDecorationLine: "underline", color: COLORS.blue, fontWeight: "bold" }}> Sign in</Text>
           </TouchableOpacity>
         </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
 
-      </SafeAreaView>
-    </KeyboardAvoidingView>
   );
 };
 

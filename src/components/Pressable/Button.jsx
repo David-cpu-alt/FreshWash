@@ -18,10 +18,10 @@ export default Button
 
 const styles = StyleSheet.create({
     Button: {
-        height: SIZES.height * 0.08,
-        width: SIZES.width * 0.9,
+        height: SIZES.height * 0.065,
+        width: SIZES.width * 0.93,
         borderWidth: 0.5,
-        borderRadius: SIZES.base * 0.5,
+        borderRadius: SIZES.base * 2.5,
         backgroundColor: COLORS.blue,
         alignItems: "center",
         justifyContent: "center",

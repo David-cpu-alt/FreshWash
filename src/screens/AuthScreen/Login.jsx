@@ -22,8 +22,7 @@ const Login = () => {
                     <Header />
                     <Text style={{ ...FONTS.body2, fontFamily: "Lato-Black", marginRight: SIZES.h1 * 9.55, color: COLORS.black }}> Log in</Text>
                 </View>
-                <Text>welcome back!</Text>
-                <Text>please enter your details</Text>
+
                 <View style={{ marginTop: SIZES.h3 * 1.5 }}>
                     <Image source={images.little} style={{ height: SIZES.height * 0.3, width: SIZES.width, resizeMode: "contain", }} />
                     <Input
